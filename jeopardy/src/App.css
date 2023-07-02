@@ -61,3 +61,8 @@ button{
   width: 500px;
   height: 75px;
 }
+
+.answerDiv{
+  display: flex;
+  flex-direction: column;
+}

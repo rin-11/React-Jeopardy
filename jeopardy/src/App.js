@@ -20,6 +20,7 @@ function App() {
     setAnswer(data[0].answer.toLowerCase());
     setShowAnswer(false);
     setFeedback("");
+    setUserAnswer(""); // Reset the user's answer input
   };
 
   const handleShowAnswer = () => {
@@ -40,6 +41,7 @@ function App() {
       setFeedback("That answer is incorrect.");
     }
     setShowAnswer(true);
+    setUserAnswer(""); // Reset the user's answer input
   };
 
   return (
