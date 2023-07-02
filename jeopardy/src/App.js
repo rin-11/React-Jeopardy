@@ -65,6 +65,7 @@ function App() {
                 type="text"
                 value={userAnswer}
                 onChange={handleUserAnswerChange}
+                className="answerInput"
               />
             </h3>
             <button type="submit">Submit Answer</button>
