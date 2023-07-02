@@ -50,7 +50,7 @@ function App() {
         <h1>Jeopardy</h1>
         <div className="getQuestion">
           <button onClick={getQuestion} className="questionButton">
-            Press For Question
+           New Question
           </button>
         </div>
         <h4>Category: {category}</h4>
