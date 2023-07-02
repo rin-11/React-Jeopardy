@@ -1,3 +1,63 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body{
+  background: rgb(21, 21, 21);
+  color: rgb(205, 199, 202);
+  font-size: 25px;
+  font-family: 'Inter', sans-serif;
   text-align: center;
+}
+
+.questionDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questionButton{
+  width: 200px;
+  height: 50px;
+  background: rgb(75, 76, 77);
+  color: rgb(245, 242, 236);
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.points{
+  display: flex;
+  justify-content: center;
+}
+
+h1{
+  font-family: 'Abril Fatface', cursive;
+  color: rgb(172, 162, 162);
+  font-size: 65px;
+  letter-spacing: 10px;
+}
+
+.answer{
+  font-weight: bold;
+  font-size: 50px;
+}
+
+button{
+  width: 300px;
+  height: 80px;
+  background: rgb(63, 60, 62);
+  color: rgb(206, 202, 191);
+  font-size: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  max-width: fit-content;
+  font-family: 'Abril Fatface', cursive;
+  letter-spacing: 5px;
+}
+
+.getQuestion>button{
+  width: 500px;
+  height: 75px;
 }
