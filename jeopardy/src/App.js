@@ -8,6 +8,8 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const getQuestion = async () => {
     const response = await fetch("http://jservice.io/api/random");
@@ -15,20 +17,29 @@ function App() {
     setQuestion(data[0].question);
     setCategory(data[0].category.title);
     setPoints(data[0].value);
-    setAnswer(data[0].answer);
+    setAnswer(data[0].answer.toLowerCase());
     setShowAnswer(false);
+    setFeedback("");
   };
 
   const handleShowAnswer = () => {
-    setShowAnswer(!showAnswer);
+    setShowAnswer(true);
   };
 
-  const handleAddPoints = () => {
-    setScore(score + points);
+  const handleUserAnswerChange = (event) => {
+    setUserAnswer(event.target.value);
   };
 
-  const handleSubtractPoints = () => {
-    setScore(score - points);
+  const handleSubmitAnswer = (event) => {
+    event.preventDefault();
+    const formattedUserAnswer = userAnswer.toLowerCase();
+    if (formattedUserAnswer === answer) {
+      setScore(score + points);
+      setFeedback(`Correct! You got ${points} points.`);
+    } else {
+      setFeedback("That answer is incorrect.");
+    }
+    setShowAnswer(true);
   };
 
   return (
@@ -36,27 +47,34 @@ function App() {
       <div className="questionDiv">
         <h1>Jeopardy</h1>
         <div className="getQuestion">
-          <button onClick={getQuestion} className="questionButton">Press For Question</button>
+          <button onClick={getQuestion} className="questionButton">
+            Press For Question
+          </button>
         </div>
-        <h4>Category: {category} </h4>
+        <h4>Category: {category}</h4>
         <h4>Points: {points}</h4>
         <h2>{question}</h2>
         {showAnswer && <p className="answer">{answer.toUpperCase()}</p>}
-        <button onClick={handleShowAnswer} className="answerButton">
-          {showAnswer ? "Hide Answer" : "Show Answer"}
-        </button>
+        {!showAnswer && (
+          <form onSubmit={handleSubmitAnswer}>
+            <h3>
+              Guess the Answer:
+              <input
+                type="text"
+                value={userAnswer}
+                onChange={handleUserAnswerChange}
+              />
+            </h3>
+            <button type="submit">Submit Answer</button>
+          </form>
+        )}
+        {feedback && <p className="feedback">{feedback}</p>}
       </div>
       <div>
         <h2>
           Score: <span>{score}</span>
         </h2>
-        <div className="points">
-        <button onClick={handleAddPoints}>Add Points</button>
-        <button onClick={handleSubtractPoints}>Subtract Points</button>
-        </div>
       </div>
-
-
     </div>
   );
 }
